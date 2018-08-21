@@ -1,0 +1,88 @@
+<div ng-controller="trkeCtrl">
+
+	<div ng-show="rezimDodavanja">
+		<button ng-click="rezimDodavanja = !rezimDodavanja" class="btn btn-primary pull-right">Pretraga</button>
+		<br />
+		<form>
+			<div class="form-group">
+				<label for="nazivNK">Duzina staze</label> <input
+					ng-model="novaManifestacija.duzinaStaze" type="text" class="form-control"
+					id="nazivNK">
+			</div>
+			<div class="form-group">
+				<label for="pisacNK">Kategorija</label> <input
+					ng-model="novaManifestacija.kategorija" type="text" class="form-control"
+					id="pisacNK">
+			</div>
+			
+
+<!--			<div class="form-group">
+				<label for="kolicinaNK">Adresa</label> <input
+					ng-model="novaTrkac.adresa" type="text" class="form-control"
+					id="kolicinaNK">
+			</div>
+			<div class="form-group">
+				<label for="cenaNK">Grad</label> <input
+					ng-model="novaTrkac.grad" type="text" class="form-control"
+					name="cenaNF">
+			</div>
+			<div class="form-group">
+				<label for="izdavacNK">Trka</label> <select
+					ng-model="novaTrkac.trkaId" class="form-control" id="izdavacNK">
+					<option ng-repeat="i in trkaci" value="{{i.id}}">{{i.duzinaStaze}}</option>
+				</select>
+			</div>-->
+
+			<button ng-click="dodaj()" type="button" class="btn btn-primary">Dodaj</button>
+		</form>
+	</div>
+
+	<div ng-show="!rezimDodavanja">
+		<button ng-click="rezimDodavanja = !rezimDodavanja" class="btn btn-primary pull-right">Dodavanje</button>
+		<br />
+		<form>
+			<div class="form-group">
+				<label for="nazivTK">Duzina staze</label> <input
+					ng-model="trazenaManifestacija.duzinaStaze" type="text" class="form-control"
+					id="nazivTK">
+			</div>
+			<div class="form-group">
+				<label for="pisacTK">Kategorija</label> <input
+					ng-model="trazenaManifestacija.kategorija" type="text" class="form-control"
+					id="pisacTK">
+			</div>
+
+
+			<button ng-click="trazi()" type="button" class="btn btn-primary">Trazi</button>
+		</form>
+	</div>
+
+	<br /> <br /> <br />
+	<div class="btn-group pull-right">
+		<button class="btn btn-primary" ng-click="nazad()" ng-disabled="pageNum == 0">Prethodna</button>
+		<button class="btn btn-primary" ng-click="napred()" ng-disabled="pageNum == totalPages - 1">Sledeća</button>
+	</div>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Duzina staze</th>
+				<th>Kategorija</th>
+			
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="k in manifestacije">
+				<td>{{k.duzinaStaze}}</td>
+				<td>{{k.kategorija}}</td>
+				
+				<td>
+					<button ng-click="obrisi(k.id)" class="btn btn-danger">Obriši</button>
+					<button ng-click="izmeni(k.id)" class="btn btn-warning">Izmeni</button>
+					<button ng-disabled="k.kolicina <= 0" ng-click="kupi(k.id)" class="btn btn-primary">Kupi</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+</div>

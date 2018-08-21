@@ -1,0 +1,132 @@
+<div ng-controller="trkaciCtrl">
+
+	<div ng-show="rezimDodavanja">
+		<button ng-click="rezimDodavanja = !rezimDodavanja" class="btn btn-primary pull-right">Pretraga</button>
+		<br />
+		<form>
+			<div class="form-group">
+				<label for="nazivNK">Ime</label> <input
+					ng-model="novaTrkac.ime" type="text" class="form-control"
+					id="nazivNK">
+			</div>
+			<div class="form-group">
+				<label for="pisacNK">Prezime</label> <input
+					ng-model="novaTrkac.prezime" type="text" class="form-control"
+					id="pisacNK">
+			</div>
+			
+			<div class="form-group">
+				<label for="polNK">Pol</label> <select
+					ng-model="novaTrkac.pol" class="form-control" id="polNK">
+					<option ng-repeat="i in pol" value="{{i.id}}">{{i.pol}}</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="velicinaNK">Velicina Majce</label> <input
+					ng-model="novaTrkac.velicinaMajce" type="text" class="form-control"
+					id="velicinaNK">
+			</div>
+			<div class="form-group">
+				<label for="kolicinaNK">Adresa</label> <input
+					ng-model="novaTrkac.adresa" type="text" class="form-control"
+					id="kolicinaNK">
+			</div>
+			<div class="form-group">
+				<label for="cenaNK">Grad</label> <input
+					ng-model="novaTrkac.grad" type="text" class="form-control"
+					name="cenaNF">
+			</div>
+			<div class="form-group">
+				<label for="drzavaNK">Drzava</label> <input
+					ng-model="novaTrkac.drzava" type="text" class="form-control"
+					name="drzavaNK">
+			</div>
+			<div class="form-group">
+				<label for="najBoljeVremeNK">Naj Bolje Vreme</label> <input
+					ng-model="novaTrkac.najBoljeVreme" type="text" class="form-control"
+					name="najBoljeVremeNK">
+			</div>
+			
+			<div class="form-group">
+				<label for="klubNK">Klub</label> <input
+					ng-model="novaTrkac.klub" type="text" class="form-control"
+					name="klubNK">
+			</div>
+			<div class="form-group">
+				<label for="izdavacNK">Trka</label> <select
+					ng-model="novaTrkac.trkaId" class="form-control" id="izdavacNK">
+					<option ng-repeat="i in trkaci" value="{{i.id}}">{{i.duzinaStaze}}</option>
+				</select>
+			</div>
+
+			<button ng-click="dodaj()" type="button" class="btn btn-primary">Dodaj</button>
+		</form>
+	</div>
+
+	<div ng-show="!rezimDodavanja">
+		<button ng-click="rezimDodavanja = !rezimDodavanja" class="btn btn-primary pull-right">Dodavanje</button>
+		<br />
+		<form>
+			<div class="form-group">
+				<label for="nazivTK">Ime</label> <input
+					ng-model="trazenaTrkac.ime" type="text" class="form-control"
+					id="nazivTK">
+			</div>
+			<div class="form-group">
+				<label for="pisacTK">Prezime</label> <input
+					ng-model="trazenaTrkac.prezime" type="text" class="form-control"
+					id="pisacTK">
+			</div>
+			<div class="form-group">
+				<label for="maxKTK">Adresa</label> <input
+					ng-model="trazenaTrkac.adresa" type="text" class="form-control"
+					id="maxKTK">
+			</div>
+
+
+			<button ng-click="trazi()" type="button" class="btn btn-primary">Trazi</button>
+		</form>
+	</div>
+
+	<br /> <br /> <br />
+	<div class="btn-group pull-right">
+		<button class="btn btn-primary" ng-click="nazad()" ng-disabled="pageNum == 0">Prethodna</button>
+		<button class="btn btn-primary" ng-click="napred()" ng-disabled="pageNum == totalPages - 1">SledeÄ‡a</button>
+	</div>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Pol</th>
+				<th>Adresa</th>
+				<th>Grad</th>
+				<th>Klub</th>
+				<th>Naj bolje vreme</th>
+				<th>Velicina Majce</th>
+				<th>Trka</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="k in trkaci">
+				<td>{{k.ime}}</td>
+				<td>{{k.prezime}}</td>
+				<td>{{k.pol}} din.</td>
+				<td>{{k.adresa}}</td>
+				<td>{{k.grad}}</td>
+				<td>{{k.klub}}</td>
+				<td>{{k.najBoljeVreme}}</td> 
+				<td>{{k.velicinaMajce}}</td>
+				<td>{{k.trkaId}}</td>
+				<td>
+					<button ng-click="obrisi(k.id)" class="btn btn-danger">ObriÅ¡i</button>
+					<button ng-click="izmeni(k.id)" class="btn btn-warning">Izmeni</button>
+					<button ng-disabled="k.kolicina <= 0" ng-click="kupi(k.id)" class="btn btn-primary">Kupi</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+</div>

@@ -1,0 +1,102 @@
+<div ng-controller="takmicenjaGodinaeCtrl">
+					
+
+	<div ng-show="rezimDodavanja">
+		<button ng-click="rezimDodavanja = !rezimDodavanja" class="btn btn-primary pull-right">Pretraga</button>
+		<br />
+		<form>
+			<div class="form-group">
+				<label for="nazivNK">Naziv manifestacije</label> <input
+					ng-model="novaTakmicenjaGodina.nazivTrke" type="text" class="form-control"
+					id="nazivNK">
+			</div>
+ <!--   		<div class="form-group">
+				<label for="pisacNK">Datum odrzavanja</label> <input
+					ng-model="novaTakmicenjaGodina.datumOdrzavanja" type="text" class="form-control"
+					id="pisacNK">
+			</div>
+			<div class="form-group">
+				<label for="ISBNNK">Mesto odrzavanja</label> <input
+					ng-model="novaTakmicenjaGodina.mestoOdrzavanja" type="text" class="form-control"
+					id="ISBNNK">
+			</div>
+			<div class="form-group">
+				<label for="izdavacNK">Naziv dogadjaja</label> <select
+					ng-model="novaTakmicenjaGodina.takmicenjaGodinaId" class="form-control" id="izdavacNK">
+					<option ng-repeat="i in takmicenjaGodinae" value="{{i.id}}">{{i.nazivTrke}}</option>
+				</select>                   
+			</div>
+
+			<div class="form-group">
+				<label for="kolicinaNK">Adresa</label> <input
+					ng-model="novaTrkac.adresa" type="text" class="form-control"
+					id="kolicinaNK">
+			</div>
+			<div class="form-group">
+				<label for="cenaNK">Grad</label> <input
+					ng-model="novaTrkac.grad" type="text" class="form-control"
+					name="cenaNF">
+			</div>
+			<div class="form-group">
+				<label for="izdavacNK">Trka</label> <select
+					ng-model="novaTrkac.trkaId" class="form-control" id="izdavacNK">
+					<option ng-repeat="i in trkaci" value="{{i.id}}">{{i.duzinaStaze}}</option>
+				</select>
+			</div>-->
+
+			<button ng-click="dodaj()" type="button" class="btn btn-primary">Dodaj</button>
+		</form>
+	</div>
+
+	<div ng-show="!rezimDodavanja">
+		<button ng-click="rezimDodavanja = !rezimDodavanja" class="btn btn-primary pull-right">Dodavanje</button>
+		<br />
+		<form>
+			<div class="form-group">
+				<label for="nazivTK">NAZIV TRKE</label> <input
+					ng-model="trazenaTakmicenjaGodina.nazivTrke" type="text" class="form-control"
+					id="nazivTK">
+			</div>
+			
+<!--		<div class="form-group">
+				<label for="maxKTK">Adresa</label> <input
+					ng-model="trazenaTakmicenjaGodina.mestoOdrzavanja" type="text" class="form-control"
+					id="maxKTK">
+			</div>-->
+
+
+			<button ng-click="trazi()" type="button" class="btn btn-primary">Trazi</button>
+		</form>
+	</div>
+
+	<br /> <br /> <br />
+	<div class="btn-group pull-right">
+		<button class="btn btn-primary" ng-click="nazad()" ng-disabled="pageNum == 0">Prethodna</button>
+		<button class="btn btn-primary" ng-click="napred()" ng-disabled="pageNum == totalPages - 1">SledeÄ‡a</button>
+	</div>
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>NAZIV TRKE</th>
+				
+			
+				
+			</tr>
+		</thead>
+		<tbody> takmicenjaGodinaee
+			<tr ng-repeat="k in takmicenjaGodinae">
+				<td>{{k.id}}</td>
+				<td>{{k.nazivTrke}}</td>
+				
+				
+				<td>
+					<button ng-click="obrisi(k.id)" class="btn btn-danger">ObriÅ¡i</button>
+					<button ng-click="izmeni(k.id)" class="btn btn-warning">Izmeni</button>
+					<button ng-disabled="k.kolicina <= 0" ng-click="kupi(k.id)" class="btn btn-primary">Kupi</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr>
+</div>
